@@ -1,5 +1,5 @@
 # Angular-Redux
-Listing of Products using NgRx, Angular Material, CDK and Flex Layout. 
+Listing of Products using NgRx, Angular Material, CDK and Flex Layout. Firebase deployable.
 # Ngrx
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
