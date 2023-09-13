@@ -8,27 +8,30 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationComponent } from './navigation/navigation.component';
 
-
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
-import {MatCardModule} from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 import { ProductsComponent } from './components/products/products.component';
 import { ProductItemComponent } from './components/product-item/product-item.component';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { productReducer } from './store/products/product.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './store/products/product.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
+import { ProductsService } from './services/products.service';
 
-
-const routes =  [
-  { path: 'products', component: ProductsComponent }
-];
+const routes = [{ path: 'products', component: ProductsComponent }];
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ProductItemComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -41,9 +44,16 @@ const routes =  [
     MatToolbarModule,
     BrowserAnimationsModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    StoreModule.forRoot({ products: productReducer }),
+    EffectsModule.forRoot([ProductEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ProductsService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

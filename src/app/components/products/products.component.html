@@ -1,3 +1,13 @@
-<div class="products"  fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutAlign="start" fxLayoutGap="10px grid">
-    <app-product-item *ngFor="let product of [0,1,2,3,4,5,6,7]" fxFlex="24"></app-product-item>
+<div
+  class="products"
+  fxLayout="row wrap"
+  fxLayoutAlign="start start"
+  fxLayoutAlign="start"
+  fxLayoutGap="10px grid"
+>
+  <div *ngIf="isLoading$ | async">Loading...</div>
+  <app-product-item
+    *ngFor="let product of products$ | async"
+    fxFlex="24"
+  ></app-product-item>
 </div>
