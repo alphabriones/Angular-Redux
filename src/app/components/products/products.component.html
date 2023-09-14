@@ -1,12 +1,13 @@
+<div *ngIf="isLoading$ | async">Loading...</div>
 <div
   class="products"
   fxLayout="row wrap"
-  fxLayoutAlign="start start"
-  fxLayoutAlign="start"
-  fxLayoutGap="10px grid"
+  fxLayoutGap="20px grid"
+  fxLayoutAlign="start stretch"
 >
-  <div *ngIf="isLoading$ | async">Loading...</div>
-  <div *ngFor="let product of products$ | async" fxFlex="24">
-    <app-product-item [product]="product"></app-product-item>
-  </div>
+  <app-product-item
+    *ngFor="let product of products$ | async"
+    [product]="product"
+    fxFlex="25"
+  ></app-product-item>
 </div>

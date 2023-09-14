@@ -13,7 +13,11 @@ export class ProductEffects {
       mergeMap(() => {
         return this.productsService.getProducts().pipe(
           map((products) =>
-            products.filter((product) => product.category === 'smartphones')
+            products.filter(
+              (product) =>
+                product.category === 'smartphones' ||
+                product.category === 'laptops'
+            )
           ),
           map((products) => ProductsAction.getProductsSuccess({ products }))
         );
