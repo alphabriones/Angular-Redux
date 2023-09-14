@@ -6,8 +6,7 @@
   fxLayoutGap="10px grid"
 >
   <div *ngIf="isLoading$ | async">Loading...</div>
-  <app-product-item
-    *ngFor="let product of products$ | async"
-    fxFlex="24"
-  ></app-product-item>
+  <div *ngFor="let product of products$ | async" fxFlex="24">
+    <app-product-item [product]="product"></app-product-item>
+  </div>
 </div>

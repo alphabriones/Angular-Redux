@@ -24,6 +24,7 @@ import { ProductEffects } from './store/products/product.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
 import { ProductsService } from './services/products.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes = [{ path: 'products', component: ProductsComponent }];
 @NgModule({
@@ -45,6 +46,7 @@ const routes = [{ path: 'products', component: ProductsComponent }];
     BrowserAnimationsModule,
     MatListModule,
     MatCardModule,
+    HttpClientModule,
     StoreModule.forRoot({ products: productReducer }),
     EffectsModule.forRoot([ProductEffects]),
     StoreDevtoolsModule.instrument({
